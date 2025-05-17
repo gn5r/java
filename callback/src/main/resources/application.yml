@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: callback
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:callback;MODE=MYSQL
+    username: sa
+    password: 
+
+  h2:
+    console:
+      enabled: true
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+  sql:
+    init:
+      mode: ALWAYS
+
+logging:
+  level:
+    web: debug
+    '[com.github.gn5r.callback]': debug

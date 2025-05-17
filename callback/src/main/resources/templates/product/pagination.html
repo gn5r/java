@@ -1,0 +1,20 @@
+<nav th:fragment="pagination">
+  <ul class="pagination">
+    <li class="page-item" th:classappend="${page.first} ? 'disabled'">
+      <a class="page-link" href="javascript:void(0)" th:onclick="|page(${page.number - 1})|" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li th:each="i : ${#numbers.sequence(0, page.totalPages - 1)}" class="page-item"
+      th:classappend="${i == page.number} ? 'active'">
+      <span th:if="${i == page.number}" th:text="${i + 1}" class="page-link"></span>
+      <a th:unless="${i == page.number}" class="page-link" href="javascript:void(0)" th:onclick="|page(${i})|"
+        th:text="${i + 1}"></a>
+    </li>
+    <li class="page-item" th:classappend="${page.last} ? 'disabled'">
+      <a class="page-link" href="javascript:void(0)" th:onclick="|page(${page.number + 1})|" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>

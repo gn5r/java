@@ -1,0 +1,40 @@
+{
+  "thymeleaf": {
+    "prefix": "html:th",
+    "description": "thmeleaf",
+    "body": [
+      "<!DOCTYPE html>",
+      "<html xmlns:th=\"http://www.thymeleaf.org\" lang=\"ja\">",
+      "",
+      "<head>",
+      "\t<meta charset=\"UTF-8\">",
+      "\t<meta name=\"viewport\" content=\"width=${1:device-width}, initial-scale=${2:1.0}\">",
+      "\t<title>${3:Document}</title>",
+      "</head>",
+      "<body>",
+      "\t${4}",
+      "</body>",
+      "",
+      "</html>"
+    ]
+  },
+  "thymeleaf with security": {
+    "prefix": "html:sec",
+    "description": "spring-security-extras",
+    "body": [
+      "<!DOCTYPE html>",
+      "<html xmlns:th=\"http://www.thymeleaf.org\" xmlns:sec=\"http://www.thymeleaf.org/extras/spring-security\" lang=\"ja\">",
+      "",
+      "<head>",
+      "\t<meta charset=\"UTF-8\">",
+      "\t<meta name=\"viewport\" content=\"width=${1:device-width}, initial-scale=${2:1.0}\">",
+      "\t<title>${3:Document}</title>",
+      "</head>",
+      "<body>",
+      "\t${4}",
+      "</body>",
+      "",
+      "</html>"
+    ]
+  }
+}
