@@ -79,7 +79,26 @@
                   <div class="col-auto">
                     <h2>検索結果</h2>
                   </div>
+                  <div class="col-auto">
+                    <div class="dropdown">
+                      <button class="btn btn-success dropdown-toggle rounded-pill" type="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">アクション</button>
+                      <ul class="dropdown-menu">
+                        <li>
+                          <a class="dropdown-item"
+                            th:href="@{/download/csv(name=${form.name},priceSince=${form.priceSince},priceUntil=${form.priceUntil},stockSince=${form.stockUntil},stockSince=${form.stockSince})}"
+                            target="_blank">CSVファイルをダウンロード</a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item">JSONファイルをダウンロード</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
                   <div class="col-auto ms-auto">
+                    <th:block th:insert="~{product/rowsPerPage :: rowsPerPage}"></th:block>
+                  </div>
+                  <div class="col-auto">
                     <th:block th:insert="~{product/pagination :: pagination}"></th:block>
                   </div>
                 </div>
@@ -116,31 +135,6 @@
     </div>
     </div>
   </main>
-  <script>
-    function formData() {
-      return {
-        form: {
-          name: '',
-          priceSince: '',
-          priceUntil: '',
-          stockSince: '',
-          stockUntil: ''
-        },
-        init() {
-          Object.keys(this.form).forEach(k => this.form[k] = this.$refs[k].value);
-        },
-        resetForm() {
-          this.form = {
-            name: '',
-            priceSince: '',
-            priceUntil: '',
-            stockSince: '',
-            stockUntil: ''
-          };
-        }
-      }
-    }
-  </script>
 </body>
 
 </html>

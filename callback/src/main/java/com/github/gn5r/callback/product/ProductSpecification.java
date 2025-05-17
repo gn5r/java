@@ -6,14 +6,14 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.jpa.domain.Specification;
 
+import com.github.gn5r.callback.external.entity.Product;
 import com.github.gn5r.callback.product.model.ProductSearchConditionModel;
-import com.github.gn5r.callback.product.model.ProductSearchResultModel;
 
 import jakarta.persistence.criteria.Predicate;
 
 public class ProductSpecification {
 
-  public static Specification<ProductSearchResultModel> searchByCondition(ProductSearchConditionModel condition) {
+  public static Specification<Product> searchByCondition(ProductSearchConditionModel condition) {
     return (root, query, cb) -> {
       List<Predicate> predicates = new ArrayList<>();
 

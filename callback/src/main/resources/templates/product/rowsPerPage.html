@@ -1,0 +1,12 @@
+<div class="row" th:fragment="rowsPerPage">
+  <label for="pageSize" class="col-form-label col-auto">表示件数</label>
+  <div class="col-auto">
+    <select name="pageSize" class="form-select" onchange="changePageSize(this)">
+      <option value="5" th:selected="${page.pageable.pageSize == 5}">5</option>
+      <option value="10" th:selected="${page.pageable.pageSize == 10}">10</option>
+      <option value="25" th:selected="${page.pageable.pageSize == 25}">25</option>
+      <option value="50" th:selected="${page.pageable.pageSize == 50}">50</option>
+      <option value="100" th:selected="${page.pageable.pageSize == 100}">100</option>
+    </select>
+  </div>
+</div>
