@@ -1,0 +1,76 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/java
+{
+    "name": "Java",
+    // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+    "image": "mcr.microsoft.com/devcontainers/java:1-21-bullseye",
+    "features": {
+        "ghcr.io/devcontainers/features/java:1": {
+            "version": "none",
+            "installMaven": "true",
+            "installGradle": "true"
+        }
+    },
+    "runArgs": [
+        "--name",
+        "Java"
+    ],
+    // Use 'forwardPorts' to make a list of ports inside the container available locally.
+    "forwardPorts": [
+        8080
+    ],
+    // Use 'postCreateCommand' to run commands after the container is created.
+    // "postCreateCommand": "java -version",
+    // Configure tool-specific properties.
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "formulahendry.auto-complete-tag",
+                "VisualStudioExptTeam.vscodeintellicode",
+                "redhat.java",
+                "vmware.vscode-boot-dev-pack",
+                "redhat.vscode-xml"
+            ],
+            "settings": {
+                "editor.formatOnSave": true,
+                "editor.insertSpaces": true,
+                "editor.linkedEditing": true,
+                "editor.minimap.enabled": false,
+                "editor.renderWhitespace": "all",
+                "editor.suggestSelection": "first",
+                "editor.tabSize": 2,
+                "files.autoGuessEncoding": true,
+                "files.eol": "\n",
+                "files.exclude": {
+                    "**/.classpath": false,
+                    "**/.project": false,
+                    "**/.settings": false,
+                    "**/.factorypath": false,
+                    "**/.git": false
+                },
+                "java.completion.favoriteStaticMembers": [
+                    "org.junit.Assert.*",
+                    "org.junit.Assume.*",
+                    "org.junit.jupiter.api.Assertions.*",
+                    "org.junit.jupiter.api.Assumptions.*",
+                    "org.junit.jupiter.api.DynamicContainer.*",
+                    "org.junit.jupiter.api.DynamicTest.*",
+                    "org.mockito.Mockito.*",
+                    "org.mockito.ArgumentMatchers.*",
+                    "org.mockito.Answers.*",
+                    "org.assertj.core.api.Assertions.*",
+                    "org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*",
+                    "org.springframework.test.web.servlet.result.MockMvcResultMatchers.*"
+                ],
+                "java.configuration.updateBuildConfiguration": "automatic",
+                "java.maven.downloadSources": true,
+                "java.maven.updateSnapshots": true,
+                "[html]": {
+                    "editor.defaultFormatter": "vscode.html-language-features"
+                }
+            }
+        }
+    }
+    // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+    // "remoteUser": "root"
+}
