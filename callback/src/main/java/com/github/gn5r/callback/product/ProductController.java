@@ -62,4 +62,19 @@ public class ProductController {
         .contentLength(resource.contentLength())
         .body(resource);
   }
+
+  @GetMapping("download/json")
+  @ResponseBody
+  public ResponseEntity<Resource> downloadJson(ProductSearchForm form) throws IOException {
+    log.debug("download json");
+    var condition = new ProductSearchConditionModel();
+    BeanUtils.copyProperties(form, condition);
+    ByteArrayResource resource = this.productService.downloadJson(condition);
+    var fileName = UUID.randomUUID().toString() + ".json";
+    return ResponseEntity.ok()
+        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileName + "\"")
+        .contentType(MediaType.APPLICATION_JSON)
+        .contentLength(resource.contentLength())
+        .body(resource);
+  }
 }

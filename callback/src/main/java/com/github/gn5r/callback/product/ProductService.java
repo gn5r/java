@@ -1,17 +1,16 @@
 package com.github.gn5r.callback.product;
 
 import java.io.IOException;
-import java.io.StringWriter;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVPrinter;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.github.gn5r.callback.common.filewriter.CSVFileWriter;
+import com.github.gn5r.callback.common.filewriter.JSONFileWriter;
 import com.github.gn5r.callback.external.entity.Product;
 import com.github.gn5r.callback.product.model.ProductSearchConditionModel;
 
@@ -37,16 +36,14 @@ public class ProductService {
 
   public ByteArrayResource downloadCsv(ProductSearchConditionModel condition) throws IOException {
     var items = this.search(condition);
-    var sw = new StringWriter();
-    try (CSVPrinter csvPrinter = new CSVPrinter(sw,
-        CSVFormat.DEFAULT.builder().setHeader("#", "商品名", "金額", "在庫").get())) {
-      for (Product item : items) {
-        csvPrinter.printRecord(item.getId(), item.getName(), item.getPrice(), item.getStock());
-      }
-      csvPrinter.flush();
+    var csvFileWriter = new CSVFileWriter<Product>(
+        i -> new Object[] { i.getId(), i.getName(), i.getPrice(), i.getStock() }, "#", "商品名", "金額", "在庫");
+    return csvFileWriter.export(items);
+  }
 
-      var bytes = sw.toString().getBytes(StandardCharsets.UTF_8);
-      return new ByteArrayResource(bytes);
-    }
+  public ByteArrayResource downloadJson(ProductSearchConditionModel condition) throws JsonProcessingException {
+    var items = this.search(condition);
+    var jsonFileWriter = new JSONFileWriter<Product>();
+    return jsonFileWriter.export(items);
   }
 }

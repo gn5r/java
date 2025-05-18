@@ -90,7 +90,9 @@
                             target="_blank">CSVファイルをダウンロード</a>
                         </li>
                         <li>
-                          <a class="dropdown-item">JSONファイルをダウンロード</a>
+                          <a class="dropdown-item"
+                            th:href="@{/download/json(name=${form.name},priceSince=${form.priceSince},priceUntil=${form.priceUntil},stockSince=${form.stockUntil},stockSince=${form.stockSince})}"
+                            target="_blank">JSONファイルをダウンロード</a>
                         </li>
                       </ul>
                     </div>
