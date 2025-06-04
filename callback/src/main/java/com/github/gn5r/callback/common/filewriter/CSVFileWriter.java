@@ -3,7 +3,6 @@ package com.github.gn5r.callback.common.filewriter;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.function.Function;
 
@@ -23,7 +22,7 @@ public class CSVFileWriter<T> {
 
   public ByteArrayResource export(List<T> items) throws IOException {
     try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        CSVPrinter csvPrinter = new CSVPrinter(new OutputStreamWriter(baos, StandardCharsets.UTF_8), this.format)) {
+        CSVPrinter csvPrinter = new CSVPrinter(new OutputStreamWriter(baos, "Shift_JIS"), this.format)) {
       for (T item : items) {
         csvPrinter.printRecord(values.apply(item));
       }
