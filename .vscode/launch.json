@@ -10,6 +10,13 @@
       "request": "launch",
       "mainClass": "com.github.gn5r.callback.CallbackApplication",
       "projectName": "callback"
+    },
+    {
+      "type": "java",
+      "name": "LayerdApplication",
+      "request": "launch",
+      "mainClass": "com.github.gn5r.boot.layerd.LayerdApplication",
+      "projectName": "presentation"
     }
   ]
 }
