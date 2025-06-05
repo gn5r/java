@@ -24,8 +24,9 @@ public class UserRepositoryImpl implements UserRepository {
 
   @Override
   public Optional<UserEntity> findById(Integer id) {
-    UserJsonEntity userJsonEntity = userJsonRepository.selectById(id);
-    if (userJsonEntity != null) {
+    Optional<UserJsonEntity> userJsonEntityOptional = userJsonRepository.selectById(id);
+    if (userJsonEntityOptional.isPresent()) {
+      UserJsonEntity userJsonEntity = userJsonEntityOptional.get();
       UserDepartmentJsonEntity userDepartmentJsonEntity = userDepartmentJsonRepository.selectByUserId(id);
       DepartmentJsonEntity departmentJsonEntity = null;
 

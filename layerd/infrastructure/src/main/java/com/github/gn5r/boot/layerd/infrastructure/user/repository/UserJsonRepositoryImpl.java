@@ -15,12 +15,12 @@ public class UserJsonRepositoryImpl implements UserJsonRepository {
   private static final String USER_JSON_FILE = "users.json";
 
   @Override
-  public UserJsonEntity selectById(Integer id) {
+  public Optional<UserJsonEntity> selectById(Integer id) {
     List<UserJsonEntity> users = selectAll();
     Optional<UserJsonEntity> user = users.stream()
         .filter(u -> u.getId().equals(id))
         .findFirst();
-    return user.orElse(null);
+    return user;
   }
 
   public List<UserJsonEntity> selectAll() {
