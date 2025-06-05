@@ -6,10 +6,10 @@
   "configurations": [
     {
       "type": "java",
-      "name": "CallbackApplication",
+      "name": "HtmxApplication",
       "request": "launch",
-      "mainClass": "com.github.gn5r.callback.CallbackApplication",
-      "projectName": "callback"
+      "mainClass": "com.github.gn5r.htmx.HtmxApplication",
+      "projectName": "htmx"
     },
     {
       "type": "java",
