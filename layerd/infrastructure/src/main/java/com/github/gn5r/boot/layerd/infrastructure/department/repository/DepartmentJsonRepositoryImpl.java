@@ -15,12 +15,12 @@ public class DepartmentJsonRepositoryImpl implements DepartmentJsonRepository {
   private static final String DEPARTMENT_JSON_FILE = "departments.json";
 
   @Override
-  public DepartmentJsonEntity selectById(Integer id) {
+  public Optional<DepartmentJsonEntity> selectById(Integer id) {
     List<DepartmentJsonEntity> departments = selectAll();
     Optional<DepartmentJsonEntity> department = departments.stream()
         .filter(d -> d.getId().equals(id))
         .findFirst();
-    return department.orElse(null);
+    return department;
   }
 
   public List<DepartmentJsonEntity> selectAll() {

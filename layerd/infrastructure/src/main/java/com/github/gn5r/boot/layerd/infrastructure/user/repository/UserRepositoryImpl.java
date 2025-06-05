@@ -31,7 +31,8 @@ public class UserRepositoryImpl implements UserRepository {
       DepartmentJsonEntity departmentJsonEntity = null;
 
       if (userDepartmentJsonEntity != null) {
-        departmentJsonEntity = departmentJsonRepository.selectById(userDepartmentJsonEntity.getDepartmentId());
+        departmentJsonEntity = departmentJsonRepository.selectById(userDepartmentJsonEntity.getDepartmentId())
+            .orElse(null);
       }
 
       return Optional.of(UserEntity.builder()
