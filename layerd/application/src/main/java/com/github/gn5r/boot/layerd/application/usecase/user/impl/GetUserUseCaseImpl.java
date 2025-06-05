@@ -31,6 +31,7 @@ public class GetUserUseCaseImpl implements GetUserUseCase {
         .id(userEntity.getId())
         .name(userEntity.getName())
         .email(userEntity.getEmail())
+        .department(userEntity.getDepartment())
         .build();
   }
 

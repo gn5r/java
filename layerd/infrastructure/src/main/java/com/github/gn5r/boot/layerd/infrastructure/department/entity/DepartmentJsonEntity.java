@@ -1,10 +1,9 @@
-package com.github.gn5r.boot.layerd.infrastructure.user.entity;
+package com.github.gn5r.boot.layerd.infrastructure.department.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.NoArgsConstructor;
-
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Builder
@@ -12,10 +11,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class UserJsonEntity {
+public class DepartmentJsonEntity {
 
   private Integer id;
   private String name;
-  private String email;
-
 }
