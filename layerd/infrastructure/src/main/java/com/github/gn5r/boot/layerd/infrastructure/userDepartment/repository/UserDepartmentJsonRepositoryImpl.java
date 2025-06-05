@@ -15,12 +15,12 @@ public class UserDepartmentJsonRepositoryImpl implements UserDepartmentJsonRepos
   private static final String USER_DEPARTMENT_JSON_FILE = "user_departments.json";
 
   @Override
-  public UserDepartmentJsonEntity selectByUserId(Integer userId) {
+  public Optional<UserDepartmentJsonEntity> selectByUserId(Integer userId) {
     List<UserDepartmentJsonEntity> userDepartments = selectAll();
     Optional<UserDepartmentJsonEntity> userDepartment = userDepartments.stream()
         .filter(ud -> ud.getUserId().equals(userId))
         .findFirst();
-    return userDepartment.orElse(null);
+    return userDepartment;
   }
 
   public List<UserDepartmentJsonEntity> selectAll() {

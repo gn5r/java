@@ -27,10 +27,12 @@ public class UserRepositoryImpl implements UserRepository {
     Optional<UserJsonEntity> userJsonEntityOptional = userJsonRepository.selectById(id);
     if (userJsonEntityOptional.isPresent()) {
       UserJsonEntity userJsonEntity = userJsonEntityOptional.get();
-      UserDepartmentJsonEntity userDepartmentJsonEntity = userDepartmentJsonRepository.selectByUserId(id);
+      Optional<UserDepartmentJsonEntity> userDepartmentJsonEntityOptional = userDepartmentJsonRepository
+          .selectByUserId(id);
       DepartmentJsonEntity departmentJsonEntity = null;
 
-      if (userDepartmentJsonEntity != null) {
+      if (userDepartmentJsonEntityOptional.isPresent()) {
+        UserDepartmentJsonEntity userDepartmentJsonEntity = userDepartmentJsonEntityOptional.get();
         departmentJsonEntity = departmentJsonRepository.selectById(userDepartmentJsonEntity.getDepartmentId())
             .orElse(null);
       }
