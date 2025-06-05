@@ -24,27 +24,26 @@ public class UserRepositoryImpl implements UserRepository {
 
   @Override
   public Optional<UserEntity> findById(Integer id) {
-    Optional<UserJsonEntity> userJsonEntityOptional = userJsonRepository.selectById(id);
-    if (userJsonEntityOptional.isPresent()) {
-      UserJsonEntity userJsonEntity = userJsonEntityOptional.get();
-      Optional<UserDepartmentJsonEntity> userDepartmentJsonEntityOptional = userDepartmentJsonRepository
-          .selectByUserId(id);
-      DepartmentJsonEntity departmentJsonEntity = null;
+    return userJsonRepository.selectById(id)
+        .map(userJsonEntity -> {
+          Optional<UserDepartmentJsonEntity> userDeptOpt = userDepartmentJsonRepository.selectByUserId(id);
 
-      if (userDepartmentJsonEntityOptional.isPresent()) {
-        UserDepartmentJsonEntity userDepartmentJsonEntity = userDepartmentJsonEntityOptional.get();
-        departmentJsonEntity = departmentJsonRepository.selectById(userDepartmentJsonEntity.getDepartmentId())
-            .orElse(null);
-      }
+          String departmentName = userDeptOpt
+              .flatMap(dept -> departmentJsonRepository.selectById(dept.getDepartmentId()))
+              .map(DepartmentJsonEntity::getName)
+              .orElse(null);
 
-      return Optional.of(UserEntity.builder()
-          .id(userJsonEntity.getId())
-          .name(userJsonEntity.getName())
-          .email(userJsonEntity.getEmail())
-          .department(departmentJsonEntity != null ? departmentJsonEntity.getName() : null)
-          .build());
-    }
-    return Optional.empty();
+          return toUserEntity(userJsonEntity, departmentName);
+        });
+  }
+
+  private UserEntity toUserEntity(UserJsonEntity userJsonEntity, String departmentName) {
+    return UserEntity.builder()
+        .id(userJsonEntity.getId())
+        .name(userJsonEntity.getName())
+        .email(userJsonEntity.getEmail())
+        .department(departmentName)
+        .build();
   }
 
 }
