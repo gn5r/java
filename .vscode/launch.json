@@ -13,9 +13,9 @@
     },
     {
       "type": "java",
-      "name": "LayerdApplication",
+      "name": "LayeredApplication",
       "request": "launch",
-      "mainClass": "com.github.gn5r.boot.layerd.LayerdApplication",
+      "mainClass": "com.github.gn5r.boot.layered.LayeredApplication",
       "projectName": "presentation"
     }
   ]
