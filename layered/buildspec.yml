@@ -7,7 +7,8 @@ phases:
   pre_build:
     commands:
       - echo "Installing zip and unzip..."
-      - apt-get update && apt-get install -y zip unzip
+      - yum update -y && yum install -y zip unzip
+      - which aws
       - echo "Downloading Source from S3..."
       - aws --endpoint-url $AWS_ENDPOINT_URL s3 cp s3://src/dev/java/java.zip .
       - echo "Unzipping Source..."
