@@ -9,10 +9,11 @@ phases:
       - echo "Installing zip and unzip..."
       - yum update -y && yum install -y zip unzip
       - which aws
-      # - echo "Downloading Source from S3..."
-      # - aws --endpoint-url $AWS_ENDPOINT_URL s3 cp s3://src/dev/java/java.zip .
-      # - echo "Unzipping Source..."
-      # - unzip java.zip
+      - echo "$AWS_ENDPOINT_URL"
+      - echo "Downloading Source from S3..."
+      - aws --endpoint-url $AWS_ENDPOINT_URL s3 cp s3://src/dev/java/java.zip ./
+      - echo "Unzipping Source..."
+      - unzip java.zip
       - echo "JAVA_HOME..."
       - echo "$JAVA_HOME"
       - echo "Maven version..."
@@ -20,7 +21,7 @@ phases:
   build:
     commands:
       - echo "Build started on $(date)"
-      - mvn -f layered clean package
+      # - mvn -f layered clean package
   post_build:
     commands:
       # - echo "Zipping Source..."
