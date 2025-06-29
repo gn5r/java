@@ -1,0 +1,25 @@
+version: 0.2
+
+phase:
+  install:
+    runtime-versions:
+      java: corretto21
+  pre_build:
+    commands:
+      - echo "JAVA_HOME..."
+      - echo "$JAVA_HOME"
+      - echo "Maven version..."
+      - mvn --version
+  build:
+    commands:
+      - echo "Build started on $(date)"
+      - mvn -f layered clean package
+  post_build:
+    commands:
+      - echo "Build completed on $(date)"
+artifacts:
+  files:
+    - "layered/target/*.war"
+cache:
+  paths:
+    - "/root/.m2/**/*"
