@@ -9,7 +9,7 @@ phases:
       - echo "Installing zip and unzip..."
       - apt-get update && apt-get install -y zip unzip
       - echo "Downloading Source from S3..."
-      - aws --endpoint-url $AWS_ENDPOINT_URL s3 cp s3://src/java/dev/java.zip .
+      - aws --endpoint-url $AWS_ENDPOINT_URL s3 cp s3://src/dev/java/java.zip .
       - echo "Unzipping Source..."
       - unzip java.zip
       - echo "JAVA_HOME..."
@@ -25,7 +25,7 @@ phases:
       - echo "Zipping Source..."
       - zip java.zip . -X
       - echo "Uploading Source from S3..."
-      - aws --endpoint-url $AWS_ENDPOINT_URL s3 cp java.zip s3://repository/java/dev/
+      - aws --endpoint-url $AWS_ENDPOINT_URL s3 cp java.zip s3://repository/dev//java
       - echo "Build completed on $(date)"
 artifacts:
   files:
