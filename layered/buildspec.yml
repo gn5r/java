@@ -1,11 +1,17 @@
 version: 0.2
 
-phase:
+phases:
   install:
     runtime-versions:
       java: corretto21
   pre_build:
     commands:
+      - echo "Installing zip and unzip..."
+      - apt-get update && apt-get install -y zip unzip
+      - echo "Downloading Source from S3..."
+      - aws --endpoint-url $AWS_ENDPOINT_URL s3 cp s3://src/java/dev/java.zip .
+      - echo "Unzipping Source..."
+      - unzip java.zip
       - echo "JAVA_HOME..."
       - echo "$JAVA_HOME"
       - echo "Maven version..."
@@ -16,6 +22,10 @@ phase:
       - mvn -f layered clean package
   post_build:
     commands:
+      - echo "Zipping Source..."
+      - zip java.zip . -X
+      - echo "Uploading Source from S3..."
+      - aws --endpoint-url $AWS_ENDPOINT_URL s3 cp java.zip s3://repository/java/dev/
       - echo "Build completed on $(date)"
 artifacts:
   files:
