@@ -25,7 +25,7 @@ phases:
       - echo "Zipping Source..."
       - zip java.zip . -X
       - echo "Uploading Source from S3..."
-      - aws --endpoint-url $AWS_ENDPOINT_URL s3 cp java.zip s3://repository/dev//java
+      - aws --endpoint-url $AWS_ENDPOINT_URL s3 cp java.zip s3://repository/dev/java
       - echo "Build completed on $(date)"
 artifacts:
   files:
