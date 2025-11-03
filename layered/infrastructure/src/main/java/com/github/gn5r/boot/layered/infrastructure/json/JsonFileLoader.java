@@ -3,7 +3,6 @@ package com.github.gn5r.boot.layered.infrastructure.json;
 import java.io.IOException;
 import java.util.List;
 
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -11,8 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JsonFileLoader {
 
-  public static <T> List<T> loadListFromJson(String filepath, TypeReference<List<T>> typeRef) {
-    Resource resource = new ClassPathResource(filepath);
+  public static <T> List<T> loadListFromJson(Resource resource, TypeReference<List<T>> typeRef) {
     ObjectMapper objectMapper = new ObjectMapper();
     try {
       return objectMapper.readValue(resource.getInputStream(), typeRef);
