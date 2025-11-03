@@ -3,6 +3,8 @@ package com.github.gn5r.boot.layered.infrastructure.userDepartment.repository;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Repository;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -12,7 +14,8 @@ import com.github.gn5r.boot.layered.infrastructure.userDepartment.entity.UserDep
 @Repository
 public class UserDepartmentJsonRepositoryImpl implements UserDepartmentJsonRepository {
 
-  private static final String USER_DEPARTMENT_JSON_FILE = "user_departments.json";
+  @Value("classpath:user_departments.json")
+  private Resource USER_DEPARTMENT_JSON_FILE;
 
   @Override
   public Optional<UserDepartmentJsonEntity> selectByUserId(Integer userId) {
